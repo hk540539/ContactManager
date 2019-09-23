@@ -5,7 +5,7 @@ export default class EditContactsScreen extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> EditContactsScreen </Text>
       </View>
     );
   }
