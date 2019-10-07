@@ -27,7 +27,7 @@ export default class CreateContactsScreen extends Component {
 		title: 'Add Contact'
 	};
 
-	saveContact = () => {
+	saveContact = async () => {
 		if (
 			this.state.fname !== '' &&
 			this.state.lname !== '' &&
@@ -35,6 +35,18 @@ export default class CreateContactsScreen extends Component {
 			this.state.email !== '' &&
 			this.state.address !== ''
 		) {
+			let contact = {
+				fname: this.state.fname,
+				lname: this.state.lname,
+				phone: this.state.phone,
+				email: this.state.email,
+				address: this.state.address
+			};
+			await AsyncStorage.setItem(Date.now().toString(), JSON.stringify(contact))
+				.then(() => this.props.navigation.goBack())
+				.catch((err) => {
+					console.log(err);
+				});
 		} else {
 			Alert.alert('All fields are required');
 		}
