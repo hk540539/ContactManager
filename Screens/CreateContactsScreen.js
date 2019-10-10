@@ -54,9 +54,82 @@ export default class CreateContactsScreen extends Component {
 
 	render() {
 		return (
-			<View>
-				<Text> CreateContactsScreen </Text>
-			</View>
+			<TouchableWithoutFeedback
+				onPress={() => {
+					Keyboard.dismiss;
+				}}
+			>
+				<ScrollView style={styles.container}>
+					<Form>
+						<Item style={styles.inputItem}>
+							<Label>First Name</Label>
+							<Input
+								autoCorrect={false}
+								autoCapitalize="none"
+								keyboardType="default"
+								onChangeText={(fname) => {
+									this.setState({ fname });
+								}}
+							/>
+						</Item>
+
+						<Item style={styles.inputItem}>
+							<Label>Last Name</Label>
+							<Input
+								autoCorrect={false}
+								autoCapitalize="none"
+								keyboardType="default"
+								onChangeText={(lname) => {
+									this.setState({ lname });
+								}}
+							/>
+						</Item>
+						<Item style={styles.inputItem}>
+							<Label>Phone</Label>
+							<Input
+								autoCorrect={false}
+								autoCapitalize="none"
+								keyboardType="number-pad"
+								onChangeText={(phone) => {
+									this.setState({ phone });
+								}}
+							/>
+						</Item>
+						<Item style={styles.inputItem}>
+							<Label>Email</Label>
+							<Input
+								autoCorrect={false}
+								autoCapitalize="none"
+								keyboardType="email-address"
+								onChangeText={(email) => {
+									this.setState({ email });
+								}}
+							/>
+						</Item>
+						<Item style={styles.inputItem}>
+							<Label>Address</Label>
+							<Input
+								autoCorrect={false}
+								autoCapitalize="none"
+								keyboardType="email-address"
+								onChangeText={(address) => {
+									this.setState({ address });
+								}}
+							/>
+						</Item>
+					</Form>
+					<Button
+						style={styles.button}
+						full
+						onPress={() => {
+							this.saveContact();
+						}}
+					>
+						<Text style={styles.buttonText}>Save</Text>
+					</Button>
+					<View style={styles.empty} />
+				</ScrollView>
+			</TouchableWithoutFeedback>
 		);
 	}
 }
@@ -65,7 +138,22 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
+		margin: 10,
+		height: 500
+	},
+	inputItem: {
+		margin: 10
+	},
+	button: {
+		backgroundColor: '#B83227',
+		marginTop: 40
+	},
+	buttonText: {
+		color: '#fff',
+		fontWeight: 'bold'
+	},
+	empty: {
+		height: 500,
+		backgroundColor: '#FFF'
 	}
 });
