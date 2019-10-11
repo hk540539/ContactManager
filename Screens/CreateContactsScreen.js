@@ -72,7 +72,6 @@ export default class CreateContactsScreen extends Component {
 								}}
 							/>
 						</Item>
-
 						<Item style={styles.inputItem}>
 							<Label>Last Name</Label>
 							<Input
