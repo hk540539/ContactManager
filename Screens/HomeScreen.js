@@ -8,9 +8,10 @@ export default class HomeScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Data: []
+			data: []
 		};
 	}
+
 	static navigationOptions = {
 		title: 'Contact App'
 	};
@@ -29,7 +30,7 @@ export default class HomeScreen extends Component {
 				return AsyncStorage.multiGet(keys)
 					.then((result) => {
 						this.setState({
-							Data: result.sort(function(a, b) {
+							data: result.sort(function(a, b) {
 								if (JSON.parse(a[1]).fname < JSON.parse(b[1]).fname) {
 									return -1;
 								}
@@ -45,12 +46,36 @@ export default class HomeScreen extends Component {
 					});
 			})
 			.catch((err) => console.log('Get all keys ', err));
-		console.log(this.state.Data);
+		console.log(this.state.data);
 	};
 
 	render() {
 		return (
 			<View style={styles.container}>
+				<FlatList
+					data={this.state.data}
+					renderItem={({ item }) => {
+						contact = JSON.parse(item[1]);
+						return (
+							<TouchableOpacity>
+								<Card style={styles.listItem}>
+									<View style={styles.iconContainer}>
+										<Text style={styles.contactIcon}>{contact.fname[0].toUpperCase()}</Text>
+									</View>
+									<View style={styles.infoContainer}>
+										<Text style={styles.infoText}>
+											{contact.fname} {contact.lname}
+										</Text>
+										<Text style={styles.infoText}>
+											{contact.fname} {contact.lname}
+										</Text>
+									</View>
+								</Card>
+							</TouchableOpacity>
+						);
+					}}
+					keyExtractor={(item, index) => item[0].toString()}
+				/>
 				<TouchableOpacity
 					style={styles.floatButton}
 					onPress={() => {
