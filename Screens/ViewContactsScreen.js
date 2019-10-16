@@ -75,11 +75,49 @@ export default class ViewContactsScreen extends Component {
 			});
 	};
 
+	editContact = (key) => {
+		this.props.navigation.navigate('Edit', { key: key });
+	};
+
 	render() {
 		return (
-			<View>
-				<Text> ViewContactsScreen </Text>
-			</View>
+			<ScrollView style={styles.container}>
+				<View style={styles.contactIconContainer}>
+					<Text style={styles.contactIcon}> {this.state.fname[0].toUpperCase()} </Text>
+					<View style={styles.nameContainer}>
+						<Text style={styles.name}>
+							{this.state.fname} {this.state.lname}
+						</Text>
+					</View>
+				</View>
+
+				<View style={styles.infoContainer}>
+					<Card>
+						<CardItem bordered>
+							<Text style={styles.infoText}>Phone</Text>
+							<CardItem bordered>
+								<Text style={styles.infoText}>{this.state.phone}</Text>
+							</CardItem>
+						</CardItem>
+					</Card>
+					<Card>
+						<CardItem bordered>
+							<Text style={styles.infoText}>Email</Text>
+							<CardItem bordered>
+								<Text style={styles.infoText}>{this.state.email}</Text>
+							</CardItem>
+						</CardItem>
+					</Card>
+					<Card>
+						<CardItem bordered>
+							<Text style={styles.infoText}>Address</Text>
+							<CardItem bordered>
+								<Text style={styles.infoText}>{this.state.address}</Text>
+							</CardItem>
+						</CardItem>
+					</Card>
+				</View>
+			</ScrollView>
 		);
 	}
 }
@@ -87,8 +125,50 @@ export default class ViewContactsScreen extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#fff'
+	},
+	contactIconContainer: {
+		height: 200,
+		backgroundColor: '#B83227',
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	contactIcon: {
+		fontSize: 100,
+		fontWeight: 'bold',
+		color: '#fff'
+	},
+	nameContainer: {
+		width: '100%',
+		height: 70,
+		padding: 10,
+		backgroundColor: 'rgba(255,255,255,0.5)',
+		justifyContent: 'center',
+		position: 'absolute',
+		bottom: 0
+	},
+	name: {
+		fontSize: 24,
+		color: '#000',
+		fontWeight: '900'
+	},
+	infoText: {
+		fontSize: 18,
+		fontWeight: '300'
+	},
+	actionContainer: {
+		flexDirection: 'row'
+	},
+	actionButton: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	actionText: {
+		color: '#B83227',
+		fontWeight: '900'
+	},
+	infoContainer: {
+		flexDirection: 'column'
 	}
 });
